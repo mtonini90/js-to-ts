@@ -1,0 +1,39 @@
+name-template: 'v$RESOLVED_VERSION'
+tag-template: 'v$RESOLVED_VERSION'
+autolabeler:
+  - label: 'chore'
+    title:
+      - '/chore/i'
+  - label: 'feature'
+    branch:
+      - '/feature\/.+/'
+  - label: 'bugfix'
+    branch:
+      - 'bugfix\/.+/'
+exclude-labels:
+  - 'skip-changelog'
+categories:
+  - title: '🧰 Misc'
+    labels:
+      - 'chore'
+  - title: '🚀 Features'
+    labels:
+      - 'feature'
+  - title: '🐛 Bug fixes'
+    labels:
+      - 'bugfix'
+version-resolver:
+  # unused, this is useful if I have any BREAKING CHANGE
+  # major:
+  #   labels:
+  #     - 'major'
+  minor:
+    labels:
+      - 'feature'
+  patch:
+    labels:
+      - 'bugfix'
+change-template: '- #$NUMBER: $TITLE'
+template: |
+  ## Changes
+  $CHANGES

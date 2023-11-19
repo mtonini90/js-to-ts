@@ -1,0 +1,50 @@
+name: Release
+
+run-name: Release ${{ github.ref_name }}
+
+on:
+  workflow_dispatch:
+  release:
+    types: [published] # this workflow runs on release and pre-release, to avoid running on pre-release use released
+
+concurrency: release
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set Node.js 18.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+          cache: 'yarn'
+
+      - name: Install dependencies and build doc
+        run: |
+          yarn --immutable --immutable-cache --check-cache
+          yarn doc:build
+
+      - name: Upload artifact for deployment
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: ./dist
+
+  deploy:
+    needs: build
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2

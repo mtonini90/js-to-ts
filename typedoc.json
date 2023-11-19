@@ -1,0 +1,16 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["./src/index.ts"],
+  "excludeExternals": true,
+  "exclude": ["**/**.test.ts", "**/**.tsx"],
+  "name": "JS to TS",
+  "out": "dist",
+  "navigationLinks": {
+    "GitHub": "https://github.com/mtonini90/js-to-ts"
+  },
+  "visibilityFilters": {
+    "@alpha": true,
+    "@beta": true
+  },
+  "includeVersion": true
+}

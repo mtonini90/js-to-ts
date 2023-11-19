@@ -1,0 +1,37 @@
+{
+  "name": "js-to-ts",
+  "version": "1.0.0",
+  "description": "Translate JavaScript methods and properties into Typescript types",
+  "main": "./src/index.ts",
+  "author": "Marco Tonini",
+  "license": "MIT",
+  "homepage": "https://mtonini90.github.io/js-to-ts/",
+  "scripts": {
+    "prepare": "husky install",
+    "prettier:write": "prettier --write .",
+    "lint:eslint-fix": "eslint --fix",
+    "doc:build": "typedoc"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.8.0",
+    "@commitlint/config-conventional": "^17.8.0",
+    "@types/github-script": "github:actions/github-script",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0",
+    "eslint": "^8.32.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.0.2",
+    "prettier": "^3.0.3",
+    "prettier-plugin-organize-imports": "^3.2.2",
+    "typedoc": "^0.25.2",
+    "typescript": "^5.2.2"
+  },
+  "lint-staged": {
+    "**/*.ts": [
+      "yarn prettier:write",
+      "yarn lint:eslint-fix"
+    ]
+  }
+}
